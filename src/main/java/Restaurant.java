@@ -10,7 +10,7 @@ public class Restaurant {
     public LocalTime openingTime;
     public LocalTime closingTime;
     private List<Item> menu = new ArrayList<Item>();
-    //date, files, network calls - Mockito
+
     public Restaurant(String name, String location, LocalTime openingTime, LocalTime closingTime) {
         this.name = name;
         this.location = location;
@@ -44,11 +44,13 @@ public class Restaurant {
     }
 
     private Item findItemByName(String itemName){
+        Item itemBeingLookedFor = null;
         for(Item item: menu) {
             if(item.getName().equals(itemName))
-                return item;
+                itemBeingLookedFor = item;
+            break;
         }
-        return null;
+        return itemBeingLookedFor;
     }
 
     public void addToMenu(String name, int price) {
