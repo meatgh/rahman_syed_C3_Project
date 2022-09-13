@@ -109,20 +109,29 @@ class RestaurantTest {
         // then we'll get the items customer has chosen to order
         // then we'll get the total cost of the order for chosen items
 
-        restaurant =new Restaurant("Amelie's cafe","Chennai",openingTime,closingTime);
-        restaurant.addToMenu("Sweet corn soup",119);
-        restaurant.addToMenu("Vegetable lasagne", 269);
-        restaurant.addToMenu("Sizzling brownie",319);
-        restaurant.addToMenu("Biryani",350);
+        restaurant = new Restaurant("Amelie's cafe","Chennai",openingTime,closingTime);
+
+        List<String> orderItems = new ArrayList<>();
+
+
 
         //Act - using the methods to get items and order total, one method is used below
         // and another is used directly during the assertion part of the TDD which is 'orderTotal'.
 
-        List<Item> itemsInOrder = restaurant.orderItems();
+        restaurant.addToMenu("Sweet corn soup",119);
+        restaurant.addToMenu("Vegetable lasagne", 269);
+        restaurant.addToMenu("Sizzling brownie",319);
+        restaurant.addToMenu("Biryani",350);
+        restaurant.addToMenu("dish5",250);
+        restaurant.addToMenu("dish6",209);
 
+
+        restaurant.orderItems("Sweet corn soup");
+        restaurant.orderItems("dish5");
+        restaurant.orderItems("dish6");
 
         //Assert - Asserting that the expected order total is equal to actual order total value
-        assertEquals(707, restaurant.orderTotal(List<Item> orderItems));
+        assertEquals(578, restaurant.displayOrderTotal(orderItems));
 
 
 
